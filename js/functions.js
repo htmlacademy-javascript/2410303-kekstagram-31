@@ -1,18 +1,33 @@
-function task_one(line, lgth) {
-  line = "проверяемая строка";
+// Проверка длины строки
+
+function StringLength(line, lgth) {
+  line = 'проверяемая строка';
   lgth = 20;
-  let results_task_one = line.length <= lgth;
-  console.log(results_task_one);
-  alert(results_task_one);
+  return line.length <= lgth;
 }
 
-task_one();
+StringLength();
 
-function task_two(line, lgth) {
-  line = "проверяемая строка";
-  lgth = 20;
+// Проверка является ли слово палиндромом
+
+function Palindrom(string) {
+  const lowerString = string.toLowerCase();
+  const characters = lowerString.replaceAll(/[^а-яa-z1-9]/gi, '');
+  const len = characters.length;
+  for (let i = 0; i < len / 2; i++) {
+    if (characters[i] !== characters[len - 1 - i]) {
+      return false;
+    }
+  }
+  return true;
 }
 
-task_two();
+Palindrom('');
 
 
+// // Строка является палиндромом
+// имяФункции('топот'); // true
+// // Несмотря на разный регистр, тоже палиндром
+// имяФункции('ДовОд'); // true
+// // Это не палиндром
+// имяФункции('Кекс');  // false
