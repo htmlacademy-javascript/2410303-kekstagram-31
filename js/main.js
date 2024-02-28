@@ -7,12 +7,12 @@ const DESCRIPTION = [
 ];
 
 const COMMENTS_MESSAGE = [
-  'КоментКоментКоментКоментКомент',
-  'КоментКоментКоментКоментКомент',
-  'КоментКоментКоментКоментКомент',
-  'КоментКоментКоментКоментКомент',
-  'КоментКоментКоментКоментКомент',
-  'КоментКоментКоментКоментКомент'
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
 
@@ -75,8 +75,8 @@ const createPost = () => ({
   url: `photos/${photosRandomUrl()}.jpg`,
   description: getRandomArrayElement(DESCRIPTION),
   likes: getRandomInteger(likesCount.MIN, likesCount.MAX),
-  comments: Array.from({length: getRandomInteger(0, 30)}, createComments)
+  comments: Array.from({ length: getRandomInteger(0, 30) }, createComments)
 });
 
-const createdPosts = Array.from({length: POST_COUNT}, createPost);
+const createdPosts = Array.from({ length: POST_COUNT }, createPost);
 console.log(createdPosts);
