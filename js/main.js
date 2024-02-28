@@ -31,6 +31,16 @@ const likesCount = {
   MAX: 200
 };
 
+const commentsCount = {
+  MIN: 0,
+  MAX: 30
+};
+
+const commentsAvatar = {
+  MIN: 1,
+  MAX: 6
+};
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -65,7 +75,7 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 
 const createComments = () => ({
   id: generateIdComments(),
-  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
+  avatar: `img/avatar-${getRandomInteger(commentsAvatar.MIN, commentsAvatar.MAX)}.svg`,
   message: getRandomArrayElement(COMMENTS_MESSAGE),
   name: getRandomArrayElement(USERS_NAME)
 });
@@ -75,8 +85,8 @@ const createPost = () => ({
   url: `photos/${photosRandomUrl()}.jpg`,
   description: getRandomArrayElement(DESCRIPTION),
   likes: getRandomInteger(likesCount.MIN, likesCount.MAX),
-  comments: Array.from({ length: getRandomInteger(0, 30) }, createComments)
+  comments: Array.from({ length: getRandomInteger(commentsCount.MIN, commentsCount.MAX) }, createComments)
 });
 
 const createdPosts = Array.from({ length: POST_COUNT }, createPost);
-console.log(createdPosts);
+
