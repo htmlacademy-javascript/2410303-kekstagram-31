@@ -1,4 +1,4 @@
-const DESCRIPTION = [
+const DESCRIPTIONS = [
   'Место',
   'Women',
   'Man',
@@ -6,7 +6,7 @@ const DESCRIPTION = [
   'photoshop'
 ];
 
-const COMMENTS_MESSAGE = [
+const COMMENTS_MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -26,17 +26,31 @@ const USERS_NAME = [
 
 const POST_COUNT = 25;
 
-const likesCount = {
+const GenerateIdCount = {
+  MIN: 1,
+  MAX: 25
+};
+
+const GenerateIdCommentsCount = {
+  MIN: 1,
+  MAX: 1000
+};
+const UrlCount = {
+  MIN: 1,
+  MAX: 25
+};
+
+const LikesCount = {
   MIN: 15,
   MAX: 200
 };
 
-const commentsCount = {
+const CommentsCount = {
   MIN: 0,
   MAX: 30
 };
 
-const commentsAvatar = {
+const CommentsAvatar = {
   MIN: 1,
   MAX: 6
 };
@@ -65,28 +79,34 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 };
 
 // Генерация ID и URL адресов
-const generateId = createRandomIdFromRangeGenerator(1, 25);
+const generateId = createRandomIdFromRangeGenerator(GenerateIdCount.MIN, GenerateIdCount.MAX);
 
-const generateIdComments = createRandomIdFromRangeGenerator(1, 1000);
+const generateIdComments = createRandomIdFromRangeGenerator(GenerateIdCommentsCount.MIN, GenerateIdCommentsCount.MAX);
 
-const photosRandomUrl = createRandomIdFromRangeGenerator(1, 25);
+const photosRandomUrl = createRandomIdFromRangeGenerator(UrlCount.MIN, UrlCount.MAX);
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const createComments = () => ({
   id: generateIdComments(),
-  avatar: `img/avatar-${getRandomInteger(commentsAvatar.MIN, commentsAvatar.MAX)}.svg`,
-  message: getRandomArrayElement(COMMENTS_MESSAGE),
+  avatar: `img/avatar-${getRandomInteger(CommentsAvatar.MIN, CommentsAvatar.MAX)}.svg`,
+  message: getRandomArrayElement(COMMENTS_MESSAGES),
   name: getRandomArrayElement(USERS_NAME)
 });
 
 const createPost = () => ({
   id: generateId(),
   url: `photos/${photosRandomUrl()}.jpg`,
-  description: getRandomArrayElement(DESCRIPTION),
-  likes: getRandomInteger(likesCount.MIN, likesCount.MAX),
-  comments: Array.from({ length: getRandomInteger(commentsCount.MIN, commentsCount.MAX) }, createComments)
+  description: getRandomArrayElement(DESCRIPTIONS),
+  likes: getRandomInteger(LikesCount.MIN, LikesCount.MAX),
+  comments: Array.from({ length: getRandomInteger(CommentsCount.MIN, CommentsCount.MAX) }, createComments)
 });
 
 const createdPosts = Array.from({ length: POST_COUNT }, createPost);
+
+function addPosts() {
+  return createdPosts;
+}
+
+addPosts();
 
