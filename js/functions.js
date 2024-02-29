@@ -1,12 +1,10 @@
 // Проверка длины строки
 
 function StringLength(line, lgth) {
-  line = 'проверяемая строка';
-  lgth = 20;
   return line.length <= lgth;
 }
 
-StringLength();
+StringLength('проверяемая строка', 20);
 
 // Проверка является ли слово палиндромом
 
