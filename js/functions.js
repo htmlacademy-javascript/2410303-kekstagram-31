@@ -34,7 +34,7 @@ Palindrom('');
 // Module5-task2
 // Проверка встречи checkMeetingTime
 
-const getDate = (timeString, shortMinuteMultiply10 = false/*true*/) => {
+const getDate = (timeString = false/*true*/) => {
 
   const date = new Date();
 
@@ -46,10 +46,7 @@ const getDate = (timeString, shortMinuteMultiply10 = false/*true*/) => {
 
   date.setHours(parseInt(array[0], 10));
 
-  let minuteString = array[1];
-  if (shortMinuteMultiply10 && (minuteString.length === 1)) {
-    minuteString += 0;
-  }
+  const minuteString = array[1];
   date.setMinutes(parseInt(minuteString, 10));
 
   date.setSeconds(0);
