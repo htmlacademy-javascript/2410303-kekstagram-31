@@ -1,2 +1,6 @@
 import { createdPosts } from './create-posts.js';
-console.log(createdPosts());
+import { drawMiniatures } from './draw-miniatures.js';
+
+const posts = createdPosts();
+drawMiniatures(posts);
+
