@@ -26,12 +26,12 @@ const USERS_NAME = [
 
 const POST_COUNT = 25;
 
-const GenerateIdCount = {
+const IdCount = {
   MIN: 1,
   MAX: 25
 };
 
-const GenerateIdCommentsCount = {
+const IdCommentsCount = {
   MIN: 1,
   MAX: 1000
 };
@@ -55,4 +55,4 @@ const CommentsAvatar = {
   MAX: 6
 };
 
-export {DESCRIPTIONS, COMMENTS_MESSAGES, USERS_NAME, POST_COUNT, GenerateIdCount, GenerateIdCommentsCount, UrlCount, LikesCount, CommentsCount, CommentsAvatar};
+export {DESCRIPTIONS, COMMENTS_MESSAGES, USERS_NAME, POST_COUNT, IdCount, IdCommentsCount, UrlCount, LikesCount, CommentsCount, CommentsAvatar};

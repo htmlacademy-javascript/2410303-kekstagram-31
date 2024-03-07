@@ -1,10 +1,10 @@
 import {getRandomInteger, createRandomIdFromRangeGenerator} from './util.js';
-import {DESCRIPTIONS, COMMENTS_MESSAGES, USERS_NAME, POST_COUNT, GenerateIdCount, GenerateIdCommentsCount, UrlCount, LikesCount, CommentsCount, CommentsAvatar} from './constants.js';
+import {DESCRIPTIONS, COMMENTS_MESSAGES, USERS_NAME, POST_COUNT, IdCount, IdCommentsCount, UrlCount, LikesCount, CommentsCount, CommentsAvatar} from './constants.js';
 
 // Генерация ID и URL адресов
-const generateId = createRandomIdFromRangeGenerator(GenerateIdCount.MIN, GenerateIdCount.MAX);
+const generateId = createRandomIdFromRangeGenerator(IdCount.MIN, IdCount.MAX);
 
-const generateIdComments = createRandomIdFromRangeGenerator(GenerateIdCommentsCount.MIN, GenerateIdCommentsCount.MAX);
+const generateIdComments = createRandomIdFromRangeGenerator(IdCommentsCount.MIN, IdCommentsCount.MAX);
 
 const photosRandomUrl = createRandomIdFromRangeGenerator(UrlCount.MIN, UrlCount.MAX);
 
