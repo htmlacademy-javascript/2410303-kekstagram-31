@@ -21,4 +21,6 @@ const createRandomIdFromRangeGenerator = (min, max) => {
   };
 };
 
-export {getRandomInteger, createRandomIdFromRangeGenerator};
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+
+export {getRandomArrayElement, getRandomInteger, createRandomIdFromRangeGenerator};
