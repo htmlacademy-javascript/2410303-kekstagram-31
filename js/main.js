@@ -5,5 +5,3 @@ import './picture-popup.js';
 const posts = createdPosts();
 drawMiniatures(posts);
 
-export {posts};
-

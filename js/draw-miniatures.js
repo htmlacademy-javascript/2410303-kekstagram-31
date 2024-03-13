@@ -7,8 +7,8 @@ const drawMiniatures = (posts) => {
 
   const picturesFragment = document.createDocumentFragment();
 
-  posts.forEach(({id, url, description, likes, comments}) => {
-
+  posts.forEach((posts) => {
+    const {id, url, description, likes, comments} = posts;
     const PhotoElement = similarPhotoTemplate.cloneNode(true);
 
     const pictureImage = PhotoElement.querySelector('.picture__img');
