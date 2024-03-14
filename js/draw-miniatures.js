@@ -25,7 +25,7 @@ const drawMiniatures = (posts) => {
     PhotoElement.querySelector('.picture__comments').textContent = comments.length;
 
     PhotoElement.addEventListener('click', () => {
-      drawBigPicturePopup(posts);
+      drawBigPicturePopup(post);
       openPopup();
     });
 
