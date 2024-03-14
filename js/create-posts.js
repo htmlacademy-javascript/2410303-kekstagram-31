@@ -1,21 +1,11 @@
-import {getRandomInteger, createRandomIdFromRangeGenerator} from './util.js';
-import {DESCRIPTIONS, COMMENTS_MESSAGES, USERS_NAME, POST_COUNT, IdCount, IdCommentsCount, UrlCount, LikesCount, CommentsCount, CommentsAvatar} from './constants.js';
+import {getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement} from './util.js';
+import {DESCRIPTIONS, POST_COUNT, IdCount, UrlCount, LikesCount, CommentsCount} from './constants.js';
+import {createComments} from './create-comments.js';
 
 // Генерация ID и URL адресов
 const generateId = createRandomIdFromRangeGenerator(IdCount.MIN, IdCount.MAX);
 
-const generateIdComments = createRandomIdFromRangeGenerator(IdCommentsCount.MIN, IdCommentsCount.MAX);
-
 const photosRandomUrl = createRandomIdFromRangeGenerator(UrlCount.MIN, UrlCount.MAX);
-
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-
-const createComments = () => ({
-  id: generateIdComments(),
-  avatar: `img/avatar-${getRandomInteger(CommentsAvatar.MIN, CommentsAvatar.MAX)}.svg`,
-  message: getRandomArrayElement(COMMENTS_MESSAGES),
-  name: getRandomArrayElement(USERS_NAME)
-});
 
 const createPost = () => ({
   id: generateId(),
