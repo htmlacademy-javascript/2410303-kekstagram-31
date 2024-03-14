@@ -9,11 +9,11 @@ const drawMiniatures = (posts) => {
 
   posts.forEach((post) => {
     const {id, url, description, likes, comments} = post;
-    const PhotoElement = similarPhotoTemplate.cloneNode(true);
+    const photoElement = similarPhotoTemplate.cloneNode(true);
 
-    const pictureImage = PhotoElement.querySelector('.picture__img');
-    const countComments = PhotoElement.querySelector('.picture__comments');
-    const countLikes = PhotoElement.querySelector('.picture__likes');
+    const pictureImage = photoElement.querySelector('.picture__img');
+    const countComments = photoElement.querySelector('.picture__comments');
+    const countLikes = photoElement.querySelector('.picture__likes');
 
     pictureImage.src = url;
     pictureImage.alt = description;
@@ -21,15 +21,15 @@ const drawMiniatures = (posts) => {
     countComments.textContent = comments.length;
     countLikes.textContent = likes;
 
-    PhotoElement.querySelector('.picture__likes').textContent = likes;
-    PhotoElement.querySelector('.picture__comments').textContent = comments.length;
+    photoElement.querySelector('.picture__likes').textContent = likes;
+    photoElement.querySelector('.picture__comments').textContent = comments.length;
 
-    PhotoElement.addEventListener('click', () => {
+    photoElement.addEventListener('click', () => {
       drawBigPicturePopup(post);
       openPopup();
     });
 
-    picturesFragment.append(PhotoElement);
+    picturesFragment.append(photoElement);
   });
 
   pictures.append(picturesFragment);
