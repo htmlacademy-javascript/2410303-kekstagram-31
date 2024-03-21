@@ -1,8 +1,13 @@
 import { createElement } from './util.js';
 
+const CountCommentValues = {
+  START_COUNT: 0,
+  STEP_COUNT: 5
+};
+
 const commentsList = document.querySelector('.social__comments');
 
-let count = 5;
+let count = CountCommentValues.START_COUNT;
 
 const generateCommentsTemplate = () => {
   const commentTemplate = createElement('li', 'social__comment');
@@ -51,11 +56,11 @@ const generateComments = (comments) => {
 
   commentsList.append(commentListFragment);
 
-  count += 5;
+  count += CountCommentValues.STEP_COUNT;
 };
 
 const countClear = () => {
-  count = 5;
+  count = CountCommentValues.STEP_COUNT;
 };
 
 export { generateCommentsTemplate, generateComments, commentsList, countClear };
