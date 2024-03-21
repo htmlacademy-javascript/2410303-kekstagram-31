@@ -5,6 +5,8 @@ const getRandomInteger = (minValue, maxValue) => {
   return Math.floor(result);
 };
 
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+
 const createRandomIdFromRangeGenerator = (min, max) => {
   const previousValues = [];
 
@@ -31,6 +33,4 @@ const createElement = (element, className) => {
   return newElement;
 };
 
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-
-export {getRandomArrayElement, getRandomInteger, createRandomIdFromRangeGenerator, isEscapeKey, isEnterKey, createElement};
+export { getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement, isEnterKey, isEscapeKey, createElement };

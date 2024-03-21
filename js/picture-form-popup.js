@@ -1,70 +1,65 @@
 import { isEscapeKey } from './util.js';
-import { generateComments, commentsList, countClear } from './generate-comments-block.js';
+import { doPictureBigger, doPictureSmaller, resetImageScale, changeImageEffect, clearEffects, createSlider } from './picture-filter.js';
+import { checkForm } from './form-validation.js';
 
-const bigPicturePopup = document.querySelector('.big-picture');
-const bigPictureClose = bigPicturePopup.querySelector('.big-picture__cancel');
+const loadImageFormPopup = document.querySelector('.img-upload__overlay');
+const loadImageFormPopupOpen = document.querySelector('.img-upload__input');
+const loadImageFormPopupClose = loadImageFormPopup.querySelector('.img-upload__cancel');
 
-const modalOpen = document.querySelector('body');
+//const imagePreview = loadImageFormPopup.querySelector('.img-upload__preview img');
 
-const commentLoaderButton = bigPicturePopup.querySelector('.comments-loader');
-let onLoadCommentsClick;
+const hashtagInput = loadImageFormPopup.querySelector('.text__hashtags');
+const commentInput = loadImageFormPopup.querySelector('.text__description');
+
+const scaleSmallerButton = loadImageFormPopup.querySelector('.scale__control--smaller');
+const scaleBiggerButton = loadImageFormPopup.querySelector('.scale__control--bigger');
+
+const effectChoseButtons = document.querySelectorAll('.effects__radio');
+
 let onDocumentKeydown = () => {};
 
-const clearBigPicturePopup = () => {
-  commentsList.textContent = '';
-  countClear();
-};
+const openLoadImageForm = () => {
+  checkForm();
+  createSlider();
 
-const drawBigPicturePopup = (posts) => {
-  const {url, likes, description, comments} = posts;
-
-  const bigPicture = document.querySelector('.big-picture__img img');
-  const bigPictureLikes = document.querySelector('.likes-count');
-  const socialCaption = document.querySelector('.social__caption');
-
-  bigPicture.src = url;
-  bigPicture.alt = description;
-  bigPictureLikes.textContent = likes;
-  socialCaption.textContent = description;
-
-  commentsList.textContent = '';
-
-  generateComments(comments);
-
-  onLoadCommentsClick = (evt) => {
-    evt.preventDefault();
-    generateComments(comments);
-  };
-
-};
-
-const openPopup = () => {
-  bigPicturePopup.classList.remove('hidden');
-  modalOpen.classList.add('modal-open');
+  loadImageFormPopup.classList.remove('hidden');
 
   document.addEventListener('keydown', onDocumentKeydown);
-  commentLoaderButton.addEventListener('click', onLoadCommentsClick);
+  scaleSmallerButton.addEventListener('click', doPictureSmaller);
+  scaleBiggerButton.addEventListener('click', doPictureBigger);
+
+  effectChoseButtons.forEach((button) => {
+    button.addEventListener('change', () => {
+      changeImageEffect(button);
+    });
+  });
 };
 
-const closePopup = () => {
-  bigPicturePopup.classList.add('hidden');
-  modalOpen.classList.remove('modal-open');
+const closeLoadImageForm = () => {
+  loadImageFormPopup.classList.add('hidden');
+  loadImageFormPopupOpen.value = '';
+  resetImageScale();
 
   document.removeEventListener('keydown', onDocumentKeydown);
-  commentLoaderButton.removeEventListener('click', onLoadCommentsClick);
-  clearBigPicturePopup();
+  scaleSmallerButton.removeEventListener('click', doPictureSmaller);
+  scaleBiggerButton.removeEventListener('click', doPictureBigger);
+
+  clearEffects();
 };
+
+loadImageFormPopupOpen.addEventListener('change', () => {
+  openLoadImageForm();
+});
+
+loadImageFormPopupClose.addEventListener('click', () => {
+  closeLoadImageForm();
+});
 
 onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closePopup();
+    if (!(document.activeElement === hashtagInput) || !(document.activeElement === commentInput)) {
+      evt.preventDefault();
+      closeLoadImageForm();
+    }
   }
 };
-
-bigPictureClose.addEventListener('click', (evt) => {
-  evt.preventDefault();
-  closePopup();
-});
-
-export { openPopup, bigPicturePopup, drawBigPicturePopup };
