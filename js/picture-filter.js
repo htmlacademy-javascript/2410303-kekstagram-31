@@ -1,3 +1,8 @@
+import {
+  scaleValueInput, imagePreview, sliderElement,
+  effectLevelValue,
+} from './elements.js';
+
 const Scales = {
   START: 100,
   STEP: 25
@@ -37,12 +42,6 @@ const HeatEffectValues = {
   START: 1,
   STEP: 0.1
 };
-
-const scaleValueInput = document.querySelector('.scale__control--value');
-const imagePreview = document.querySelector('.img-upload__preview img');
-
-const sliderElement = document.querySelector('.effect-level__slider');
-const effectLevelValue = document.querySelector('.effect-level__value');
 
 const createSlider = () => {
   noUiSlider.create(sliderElement, {

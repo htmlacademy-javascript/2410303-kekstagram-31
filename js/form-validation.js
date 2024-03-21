@@ -1,3 +1,7 @@
+import {
+  loadImageForm, hashtagInputForm, commentInputForm,
+} from './elements.js';
+
 const hashtag = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const WrongMasseges = {
@@ -10,9 +14,6 @@ const WrongMasseges = {
 const HASHTAG_MAX_COUNT = 5;
 const COMMENT_MAX_LENGTH = 140;
 
-const loadImageForm = document.querySelector('.img-upload__form');
-const hashtagInput = loadImageForm.querySelector('.text__hashtags');
-const commentInput = loadImageForm.querySelector('.text__description');
 
 const pristine = new Pristine(loadImageForm, {
   classTo: 'img-upload__field-wrapper',
@@ -56,10 +57,10 @@ const checkCommentLength = (value) => {
   return true;
 };
 
-pristine.addValidator(hashtagInput, checkHashtags, WrongMasseges.HASTAG_TEXT);
-pristine.addValidator(hashtagInput, checkCountHashtags, WrongMasseges.HASHTAG_COUNT);
-pristine.addValidator(hashtagInput, checkHashtagsDuplicates, WrongMasseges.HASHTAG_DUPLICATE);
-pristine.addValidator(commentInput, checkCommentLength, WrongMasseges.COMMENT_LENGTH);
+pristine.addValidator(hashtagInputForm, checkHashtags, WrongMasseges.HASTAG_TEXT);
+pristine.addValidator(hashtagInputForm, checkCountHashtags, WrongMasseges.HASHTAG_COUNT);
+pristine.addValidator(hashtagInputForm, checkHashtagsDuplicates, WrongMasseges.HASHTAG_DUPLICATE);
+pristine.addValidator(commentInputForm, checkCommentLength, WrongMasseges.COMMENT_LENGTH);
 
 const checkForm = () => {
   pristine.validate();

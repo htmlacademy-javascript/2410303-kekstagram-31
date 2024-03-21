@@ -1,20 +1,11 @@
 import { isEscapeKey } from './util.js';
 import { doPictureBigger, doPictureSmaller, resetImageScale, changeImageEffect, clearEffects, createSlider } from './picture-filter.js';
 import { checkForm } from './form-validation.js';
-
-const loadImageFormPopup = document.querySelector('.img-upload__overlay');
-const loadImageFormPopupOpen = document.querySelector('.img-upload__input');
-const loadImageFormPopupClose = loadImageFormPopup.querySelector('.img-upload__cancel');
-
-//const imagePreview = loadImageFormPopup.querySelector('.img-upload__preview img');
-
-const hashtagInput = loadImageFormPopup.querySelector('.text__hashtags');
-const commentInput = loadImageFormPopup.querySelector('.text__description');
-
-const scaleSmallerButton = loadImageFormPopup.querySelector('.scale__control--smaller');
-const scaleBiggerButton = loadImageFormPopup.querySelector('.scale__control--bigger');
-
-const effectChoseButtons = document.querySelectorAll('.effects__radio');
+import {
+  loadImageFormPopup, loadImageFormPopupOpen, loadImageFormPopupClose,
+  hashtagInput, commentInput, scaleSmallerButton,
+  scaleBiggerButton, effectChoseButtons,
+} from './elements.js';
 
 let onDocumentKeydown = () => {};
 
