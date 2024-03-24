@@ -10,16 +10,17 @@ const commentInput = loadImageFormPopup.querySelector('.text__description');
 const scaleSmallerButton = loadImageFormPopup.querySelector('.scale__control--smaller');
 const scaleBiggerButton = loadImageFormPopup.querySelector('.scale__control--bigger');
 
-const effectChoseButtons = document.querySelectorAll('.effects__radio');
+const effectRadioButton = document.querySelector('.effects__list');
 
 
 // Элементы фильтра
 
-const scaleValueInput = document.querySelector('.scale__control--value');
 const imagePreview = document.querySelector('.img-upload__preview img');
 
 const sliderElement = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
+const sliderPanel = document.querySelector('.img-upload__effect-level');
+
 
 // Элементы валидации
 
@@ -36,12 +37,12 @@ export {
   commentInput,
   scaleSmallerButton,
   scaleBiggerButton,
-  effectChoseButtons,
+  effectRadioButton,
 
-  scaleValueInput,
   imagePreview,
   sliderElement,
   effectLevelValue,
+  sliderPanel,
 
   loadImageForm,
   hashtagInputForm,

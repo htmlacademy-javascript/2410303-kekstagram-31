@@ -2,7 +2,7 @@ import {
   loadImageForm, hashtagInputForm, commentInputForm,
 } from './elements.js';
 
-const hashtag = /^#[a-zа-яё0-9]{1,19}$/i;
+const HASHTAG_REGEXP = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const WrongMasseges = {
   HASTAG_TEXT: 'Неверная запись хештегов',
@@ -32,30 +32,22 @@ const checkHashtags = (value) => {
   if (value === '') {
     return true;
   }
-  return hashtagArray.every((element) => hashtag.test(element));
+  return hashtagArray.every((element) => HASHTAG_REGEXP.test(element));
 };
 
 const checkCountHashtags = (value) => {
   const hashtagArray = value.trim().split(' ');
 
-  if (hashtagArray.length <= HASHTAG_MAX_COUNT) {
-    return true;
-  }
-  return false;
+  return hashtagArray.length <= HASHTAG_MAX_COUNT;
 };
 
 const checkHashtagsDuplicates = (value) => {
   const hashtagArray = value.trim().split(' ');
 
-  return checkDuplicates(hashtagArray);
+  return checkDuplicates(hashtagArray.map((tag) => tag.toLowerCase()));
 };
 
-const checkCommentLength = (value) => {
-  if (value.length > COMMENT_MAX_LENGTH) {
-    return false;
-  }
-  return true;
-};
+const checkCommentLength = (value) => value.length <= COMMENT_MAX_LENGTH;
 
 pristine.addValidator(hashtagInputForm, checkHashtags, WrongMasseges.HASTAG_TEXT);
 pristine.addValidator(hashtagInputForm, checkCountHashtags, WrongMasseges.HASHTAG_COUNT);
@@ -68,7 +60,9 @@ const checkForm = () => {
 
 loadImageForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  pristine.validate();
+  if (pristine.validate()) {
+    loadImageForm.submit();
+  }
 });
 
 export { checkForm };
