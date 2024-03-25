@@ -1,9 +1,11 @@
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
+const getRandomInteger = (minValue, maxValue) => {
+  const lower = Math.ceil(Math.min(minValue, maxValue));
+  const upper = Math.floor(Math.max(minValue, maxValue));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
+
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const createRandomIdFromRangeGenerator = (min, max) => {
   const previousValues = [];
@@ -31,6 +33,9 @@ const createElement = (element, className) => {
   return newElement;
 };
 
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+const addModalOpen = () => {
+  const modalOpen = document.querySelector('body');
+  modalOpen.classList.toggle('modal-open');
+};
 
-export {getRandomArrayElement, getRandomInteger, createRandomIdFromRangeGenerator, isEscapeKey, isEnterKey, createElement};
+export { getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement, isEnterKey, isEscapeKey, createElement, addModalOpen};
